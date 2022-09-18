@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    command: npm run dev
+    ports:
+      - "4040:4040"
+      - "9229:9229"
+    networks:
+      - backend
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    restart: always
+
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:latest
+    ports:
+     - "6379:6379"
+     - "8001:8001"
+    restart: always
+    volumes: 
+      - cache:/data
+    networks:
+      - backend
+    #command: ["redis-server", "--bind", "redis", "--port", "6379"]
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    networks:
+      - backend
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8088:8081"
+    depends_on:
+      - redis
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+  cache:
+    driver: local

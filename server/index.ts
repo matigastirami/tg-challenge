@@ -5,6 +5,6 @@ import { resolvers } from './src/resolvers';
 
 const port = env.PORT;
 
-(
-  async () => await startApolloServer(port, typeDefs, resolvers)
-)();
+export const createApolloServer = async (port: number) => await startApolloServer(port, typeDefs, resolvers);
+
+createApolloServer(port);

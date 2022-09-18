@@ -41,9 +41,11 @@ async function startApolloServer(port: number, typeDefs: any, resolvers: any) {
     path: '/'
   });
 
-  // Modified server startup
-  await new Promise<void>(resolve => httpServer.listen({ port }, resolve));
-  logger.info(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  httpServer.listen({ port }, () => {
+    logger.info(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  });
+
+  return server;
 }
 
 // initRedisClient();

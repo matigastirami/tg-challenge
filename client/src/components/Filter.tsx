@@ -54,7 +54,8 @@ export const Filter = () => {
 
   const handleSubmit = () => {
     if(enteredZipCode.length) {
-      setSearchHistory([...new Set<string>([...searchHistory, enteredZipCode])]);
+      const updatedHistory = [...new Set<string>([...searchHistory, enteredZipCode])];
+      setSearchHistory(updatedHistory.slice(-5));
       handleFilterChange('zipCode', enteredZipCode);
       handleFilterChange('countryCode', selectedCountryCode);
     }

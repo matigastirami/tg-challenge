@@ -1,13 +1,6 @@
 import { CardContent, Typography } from "@mui/material";
+import { IPlaceInfo } from "../interface/place.interface";
 import { ShortenPlaceName } from "./ShortenPlaceName";
-
-export interface IPlaceInfo {
-  placeName: string;
-  longitude: string;
-  latitude: string;
-  state: string;
-  stateAbbreviation: string;
-}
 
 type Props = {
   info: IPlaceInfo;

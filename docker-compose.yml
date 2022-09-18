@@ -8,14 +8,14 @@ services:
     links:
       - server
     networks:
-      - truenorth
+      - app_net
   server:
     extends:
       file: ./server/docker-compose.yml
-      service: server
+      service: api
     networks:
-      - truenorth
+      - app_net
 
 networks:
-  truenorth:
+  app_net:
     driver: bridge

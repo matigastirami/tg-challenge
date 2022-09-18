@@ -3,9 +3,10 @@ import { Alert, Grid, LinearProgress } from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { ZIP_CODE_INFO } from "../graphql/query/zip-code.query";
 import { CardContainer } from "./CardContainer";
-import { IPlaceInfo, PlaceItem } from "./PlaceItem";
+import { PlaceItem } from "./PlaceItem";
 import { FilterContext } from "../context/filter.context";
 import { useState } from "react";
+import { IPlaceInfo } from "../interface/place.interface";
 
 export const InfoList = () => {
   const { countryCode, zipCode } = useContext(FilterContext);
